@@ -57,4 +57,12 @@ impl FileProgress for HTMLFileProgress {
     fn get_count(&self) -> usize {
         self.file_progress.get_count()
     }
+
+    fn is_verbose(&self) -> bool {
+        self.file_progress.is_verbose()
+    }
+
+    fn set_verbose(&mut self, verbose: bool) {
+        self.file_progress.set_verbose(verbose)
+    }
 }

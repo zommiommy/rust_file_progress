@@ -33,6 +33,14 @@ impl<I: ExactSizeIterator, FP: FileProgress> FileProgress for FileProgressIter<I
         self.progress.get_count()
     }
 
+    fn set_verbose(&mut self, verbose: bool) {
+        self.progress.set_verbose(verbose)
+    }
+
+    fn is_verbose(&self) -> bool {
+        self.progress.is_verbose()
+    }
+
     /// Returns whether the process has completed.
     fn is_complete(&self) -> bool {
         self.progress.is_complete()

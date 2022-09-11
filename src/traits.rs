@@ -16,8 +16,17 @@ pub trait FileProgress: ToString {
 
     /// Print progress to file.
     fn print(&self) -> std::io::Result<()> {
-        std::fs::write(self.get_path(), self.to_string())
+        if self.is_verbose() {
+            std::fs::write(self.get_path(), self.to_string())?
+        }
+        Ok(())
     }
+
+    /// Set verbosity.
+    fn set_verbose(&mut self, verbose: bool);
+
+    /// Return whether the verbose.
+    fn is_verbose(&self) -> bool;
 
     /// Increase by one the progress and prints it to file.
     fn tick_and_print(&mut self) -> std::io::Result<()> {

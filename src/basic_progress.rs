@@ -5,6 +5,7 @@ pub struct BasicProgress {
     count: usize,
     start_time: SystemTime,
     project_name: String,
+    verbose: bool
 }
 
 impl<'a> From<&'a str> for BasicProgress {
@@ -20,6 +21,7 @@ impl BasicProgress {
             count: 0,
             start_time: SystemTime::now(),
             project_name: project_name.to_string(),
+            verbose: true
         }
     }
 
@@ -82,5 +84,13 @@ impl BasicProgress {
 
     pub(crate) fn reset_start_time(&mut self) {
         self.start_time = SystemTime::now();
+    }
+
+    pub(crate) fn is_verbose(&self) -> bool {
+        self.verbose
+    }
+
+    pub(crate) fn set_verbose(&mut self, verbose: bool) {
+        self.verbose = verbose;
     }
 }
