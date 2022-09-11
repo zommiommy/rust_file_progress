@@ -45,6 +45,9 @@ impl BasicProgress {
     }
 
     pub(crate) fn get_humanized_remaining_time(&self) -> String {
+        if self.get_count() == 0 {
+            return "Unknown".to_string();
+        }
         rs_humanize::time::format(
             chrono::Utc::now() - chrono::Duration::from_std(self.get_remaining_time()).unwrap(),
         )
