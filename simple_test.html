@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <title>simple_test</title>
+        <meta http-equiv="refresh" content="1" >
+        <style>
+            body, html {
+                background-color: white;
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                position: relative;
+                font-family: sans-serif;
+            }
+            .progress_box {
+                padding: 1em;
+                width: 100%;
+                box-sizing: border-box;
+                background-color: #f7f7f7;
+                border: 1px solid #cfcfcf;
+                border-radius: 2px;
+            }
+            .progress_bar {
+                width: 100%;
+                padding: 0.5em;
+                position: relative;
+                border-radius: 2px;
+                box-sizing: border-box;
+                display: flex;
+            }
+            .progress_bar:before, .progress_bar:after {
+                padding-left: 0.5em;
+                padding-right: 0.5em;
+            }
+            .progress_bar:before {
+                display: inline-block;
+                content: attr(before);
+            }
+            .progress_bar:after {
+                text-align: right;
+                display: inline-block;
+                content: attr(after);
+            }
+            .progress_bar .bar_content {
+                border-radius: 2px;
+                height: 100%;
+            }
+
+            .progress_bar .actual_bar {
+                background-color: #eeeeee;
+                flex: 1;
+                width: 100%;
+            }
+            
+            .progress_bar .bar_content.in_progress {
+                background-color: #2196f3;
+            }
+
+            .progress_bar .bar_content.complete {
+                background-color: #4caf50;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="progress_box">
+            <div class="progress_bar" before="simple_test: 10 seconds ago" after="now">
+                <div class="actual_bar complete">
+                    <div class="bar_content complete" style="width: 100%"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
