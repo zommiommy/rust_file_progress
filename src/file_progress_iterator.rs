@@ -11,12 +11,9 @@ impl<I, FP: FileProgress> ToString for FileProgressIter<I, FP> {
     }
 }
 
-impl<I: ExactSizeIterator, FP: FileProgress> FileProgress for FileProgressIter<I, FP> {
+impl<I, FP: FileProgress> FileProgress for FileProgressIter<I, FP> {
     /// Increase by one.
     fn tick(&mut self) {
-        if self.get_count() == 0 {
-            self.set_len(self.len());
-        }
         self.progress.tick();
     }
 
@@ -71,7 +68,7 @@ where
     }
 }
 
-impl<S, FP: FileProgress, I: ExactSizeIterator + Iterator<Item = S>> Iterator for FileProgressIter<I, FP> {
+impl<S, FP: FileProgress, I: Iterator<Item = S>> Iterator for FileProgressIter<I, FP> {
     type Item = S;
 
     fn next(&mut self) -> Option<Self::Item> {
@@ -91,7 +88,7 @@ impl<I: ExactSizeIterator, FP: FileProgress> ExactSizeIterator for FileProgressI
     }
 }
 
-impl<I: ExactSizeIterator + DoubleEndedIterator, FP: FileProgress> DoubleEndedIterator for FileProgressIter<I, FP> {
+impl<I: DoubleEndedIterator, FP: FileProgress> DoubleEndedIterator for FileProgressIter<I, FP> {
     fn next_back(&mut self) -> Option<Self::Item> {
         let item = self.it.next_back();
 
