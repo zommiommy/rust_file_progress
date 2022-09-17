@@ -9,3 +9,8 @@ pub use traits::*;
 pub use file_progress_iterator::*;
 pub use html_file_progress::*;
 pub use markdown_file_progress::*;
+
+#[cfg(feature="rayon")]
+mod par_iter;
+#[cfg(feature="rayon")]
+pub use par_iter::*;
